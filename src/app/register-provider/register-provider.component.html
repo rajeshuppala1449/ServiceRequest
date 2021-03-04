@@ -1,0 +1,49 @@
+<div class="card">
+    <h4 class="card-header">Register</h4>
+    <div class="card-body">
+        <div class="row">
+
+            <div class="col-xs-6">
+                <button class="btn btn-primary">Register as a Servic Provider</button>
+            </div>
+            <div class="col-xs-6">
+                <button class="btn btn-link" routerLink="/registerUser">Register as User</button>
+            </div>
+
+        </div>
+
+        <form [formGroup]="form">
+            <div class="form-group">
+                <label for="name">Name</label>
+                <input type="text" formControlName="name" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label for="email">email</label>
+                <input type="text" formControlName="email" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label for="location">location</label>
+                <input type="text" formControlName="location" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <label for="phoneno">Phone No</label>
+                <input type="text" formControlName="phoneno" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <button (click)="submit()" class="btn btn-primary">
+
+                    Register
+                </button>
+                <a class="btn btn-link" routerLink="/">Cancel</a>
+            </div>
+        </form>
+    </div>
+</div>

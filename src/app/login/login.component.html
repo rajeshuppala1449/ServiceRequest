@@ -1,0 +1,51 @@
+<!-- <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+    <a class="navbar-brand" href="#">DevConquer</a>
+
+    
+    <ul class="navbar-nav">
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 1</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 2</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="#">Link 3</a>
+        </li>
+    </ul>
+</nav> 
+-->
+
+<div class="card">
+    <h4 class="card-header">Login</h4>
+    <div class="card-body">
+        <form [formGroup]="form" (ngSubmit)="login()">
+            <div class="alert alert-danger" *ngIf="form.errors">
+                <div *ngIf="form.errors.invalidLogin">Invalid login credentials</div>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="text" formControlName="email" class="form-control" />
+                <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                    <div *ngIf="email.errors.required"> email is required</div>
+                    <div *ngIf="email.errors.minlength"> email must be {{email.errors.minlength.requiredLength}}
+                        characters</div>
+                    <div *ngIf="email.errors.email">wrong format</div>
+                </div>
+
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input type="password" formControlName="password" class="form-control" />
+
+            </div>
+            <div class="form-group">
+                <button type="submit" class="btn btn-primary">
+
+                    Login
+                </button>
+                <a class="btn btn-link" routerLink="registerUser">Register</a>
+            </div>
+        </form>
+    </div>
+</div>
