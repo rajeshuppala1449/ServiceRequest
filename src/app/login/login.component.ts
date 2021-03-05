@@ -1,19 +1,30 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { Router } from '@angular/router'
+import { AuthService } from '../services/auth.service'
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit {
 
-  constructor(private router: Router) { }
+
+  ngOnInit() {
+    // localStorage.removeItem('login')
+    // if (this.authService.isLoggedIn) {
+    //   this.router.navigateByUrl('userHomePage')
+    // }
+  }
+
+  constructor(private router: Router, private authService: AuthService) { }
 
   form = new FormGroup({
     email: new FormControl('', [Validators.required, Validators.minLength(3), Validators.email]),
-    password: new FormControl('')
+    password: new FormControl('', [
+      Validators.required,
+      Validators.minLength(6)])
   }
   )
 
@@ -22,15 +33,19 @@ export class LoginComponent {
   }
 
   login() {
-    var valid = true;
-    if (!valid) {
-      this.form.setErrors({
-        invalidLogin: true
-      })
-    } else {
-      this.router.navigateByUrl('/userHomePage')
+    if (this.form.valid) {
+      var valid = this.authService.login(this.form.value);
+      valid = false
+      if (!valid) {
+        this.form.setErrors({
+          invalidLogin: true
+        })
+      } else {
+        this.router.navigateByUrl('/userHomePage')
+      }
     }
-    console.log(this.form.value.email)
+
   }
+
 
 }
