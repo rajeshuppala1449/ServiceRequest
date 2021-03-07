@@ -1,6 +1,7 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { LoginComponent } from './login/login.component';
@@ -14,6 +15,13 @@ import { PracticeComponent } from './practice/practice.component';
 import { AuthService } from './services/auth.service'
 import { AuthGuardService } from '../app/services/auth-guard.service';
 import { NavbarComponent } from './navbar/navbar.component'
+import { HttpClientModule } from '@angular/common/http'
+import { ProviderService } from './services/provider.service';
+import { EditBookingComponent } from './edit-booking/edit-booking.component';
+import { AddServiceComponent } from './add-service/add-service.component';
+import { ViewServiceComponent } from './view-service/view-service.component';
+import { AvailableServicesComponent } from './available-services/available-services.component';
+
 
 
 @NgModule({
@@ -26,23 +34,32 @@ import { NavbarComponent } from './navbar/navbar.component'
     ProviderHomePageComponent,
     PracticeComponent,
     NavbarComponent,
+    EditBookingComponent,
+    AddServiceComponent,
+    ViewServiceComponent,
+    AvailableServicesComponent,
 
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    HttpClientModule,
+    FormsModule,
     RouterModule.forRoot([
-      { path: '**', component: ProviderHomePageComponent },
+      { path: "practice", component: PracticeComponent },
+      { path: 'availableServices', component: AvailableServicesComponent },
       { path: '', component: LoginComponent },
       { path: 'registerUser', component: RegisterUserComponent },
       { path: 'registerProvider', component: RegisterProviderComponent },
-      { path: 'userHomePage', component: UserHomePageComponent, canActivate: [AuthGuardService] },
-      { path: 'providerHomePage', component: ProviderHomePageComponent, canActivate: [AuthGuardService] }
-
+      { path: 'userHomePage', component: UserHomePageComponent },
+      { path: 'providerHomePage', component: ProviderHomePageComponent },
+      { path: 'addService', component: AddServiceComponent },
+      { path: 'editBooking', component: EditBookingComponent },
+      { path: 'viewServices', component: ViewServiceComponent }
     ])
   ],
-  providers: [AuthService, AuthGuardService],
+  providers: [AuthService, AuthGuardService, ProviderService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

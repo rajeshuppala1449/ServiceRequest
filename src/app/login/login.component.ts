@@ -35,7 +35,6 @@ export class LoginComponent implements OnInit {
   login() {
     if (this.form.valid) {
       var valid = this.authService.login(this.form.value);
-      valid = false
       if (!valid) {
         this.form.setErrors({
           invalidLogin: true

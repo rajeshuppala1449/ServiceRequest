@@ -1,0 +1,46 @@
+<div style="margin-top: 40px;margin-left:20%;margin-right: 20%;">
+    <div class=" card">
+        <div style="display: flex;justify-content: space-between;align-items: center;" class="card-header">
+            <div style="font-size: 20px;font-weight: bold;">{{booking.servicename}}</div>
+            <div style="border: 1px solid black; padding: 5px; border-radius: 20px;">{{booking.status}}
+            </div>
+
+        </div>
+        <div class="card-body">
+
+
+            <h5 class="card-text"><i class="fas fa-user-alt"></i><label>&nbsp;&nbsp;{{booking.customername}}</label>
+            </h5>
+            <h6 class="card-text"><i class="fas fa-calendar-day"></i><label>&nbsp;&nbsp;{{booking.bookingtime}}</label>
+            </h6>
+
+
+            <p style="font-size: 25px;font-weight:bold" class="card-text"><i
+                    class="fas fa-rupee-sign"></i><label>&nbsp;{{booking.price}}</label>
+            </p>
+            <p class="card-text"><i class="fas fa-location-arrow"></i>&nbsp;&nbsp;{{booking.location}}</p>
+
+            <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+        </div>
+        <div *ngIf="checkStatus(statusArr.BOOKED)" style="margin: 30px;">
+            <button style="margin-left:10%" (click)="updateStatus(statusArr.ACCEPTED)"
+                class="btn btn-outline-success">Accept Request</button>
+            <button style="margin-left:50%" (click)="updateStatus(statusArr.REJECTED)"
+                class="btn btn-outline-danger">Reject Request</button>
+        </div>
+        <div *ngIf="checkStatus(statusArr.ACCEPTED)" style="margin: 30px;">
+            <button style="margin-left:40%" (click)="updateStatus(statusArr.FINISHED)"
+                class="btn btn-outline-success">Finish Work</button>
+        </div>
+        <div *ngIf="checkStatus(statusArr.REJECTED)" style="margin: 30px;">
+            <p style="font-size: 20px;font-weight:bold;margin-left: 30%;">You have rejected the request</p>
+        </div>
+        <div *ngIf="checkStatus(statusArr.CANCELLED)" style="margin: 30px;">
+            <p style="font-size: 20px;font-weight:bold;margin-left: 30%;">Customer have rejected the request</p>
+        </div>
+        <div *ngIf="checkStatus(statusArr.BOOKED)" style="margin: 30px;">
+            <!-- rating to be displayed -->
+        </div>
+    </div>
+</div>
