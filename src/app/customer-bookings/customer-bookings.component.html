@@ -1,0 +1,46 @@
+<!-- <app-navbar></app-navbar> -->
+<div style="margin-top: 40px;margin-right: 20%;margin-left: 20%;">
+    <div style="margin-left: 87%;" class="dropdown show">
+        <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{selectedStatus}}
+        </a>
+
+        <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
+            <a *ngFor="let status of statusArr" class="dropdown-item" (click)="filterBookings(status)">{{status}}</a>
+        </div>
+    </div>
+
+
+    <div *ngFor="let booking of bookings" style="margin-top: 20px;" class="bookingcard" (click)="openBooking(booking)">
+
+        <div class=" card">
+            <div style="display: flex;justify-content: space-between;align-items: center;" class="card-header">
+                <div style="font-size: 20px;font-weight: bold;">{{booking.servicename}}</div>
+                <div style="border: 1px solid black; padding: 5px; border-radius: 20px;">{{booking.status}}
+                </div>
+
+            </div>
+            <div class="card-body">
+                <div style="display: flex;align-items: center;">
+                    <div>
+                        <h5 class="card-text"><i
+                                class="fas fa-user-alt"></i><label>&nbsp;&nbsp;{{booking.customername}}</label>
+                        </h5>
+                        <h6 class="card-text"><i
+                                class="fas fa-calendar-day"></i><label>&nbsp;&nbsp;{{booking.bookingtime}}</label>
+                        </h6>
+                    </div>
+                    <div style="margin-left: 70%;">
+                        <p style="font-size: 30px;font-weight:bold" class="card-text"><i
+                                class="fas fa-rupee-sign"></i><label>&nbsp;{{booking.price}}</label>
+                        </p>
+                    </div>
+                </div>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+
+            </div>
+        </div>
+
+    </div>
+</div>

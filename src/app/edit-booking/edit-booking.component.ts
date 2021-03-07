@@ -8,7 +8,7 @@ import { ProviderService } from '../services/provider.service';
   styleUrls: ['./edit-booking.component.css']
 })
 export class EditBookingComponent implements OnInit {
-
+  rating: string;
   booking = {}
   statusArr = { "BOOKED": "booked", "ACCEPTED": "accepted", "CANCELLED": "cancelled", "FINISHED": "finished", "REJECTED": "rejected" }
   constructor(private route: ActivatedRoute,
@@ -25,7 +25,7 @@ export class EditBookingComponent implements OnInit {
   }
 
   checkStatus(status) {
-    // return this.booking.status == status;
+    //return this.booking.status == status;
   }
 
   updateStatus(newStatus) {
@@ -34,6 +34,10 @@ export class EditBookingComponent implements OnInit {
     this.router.navigateByUrl("providerHomePage")
   }
 
+  getRating(t: string) {
+    this.rating = t;
+    console.log(this.rating);
+  }
 
 
 

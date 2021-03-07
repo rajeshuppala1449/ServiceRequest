@@ -1,6 +1,9 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 
+
+import { Ng2SearchPipeModule } from 'ng2-search-filter';
+
 import { FormsModule } from '@angular/forms';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
@@ -21,6 +24,8 @@ import { EditBookingComponent } from './edit-booking/edit-booking.component';
 import { AddServiceComponent } from './add-service/add-service.component';
 import { ViewServiceComponent } from './view-service/view-service.component';
 import { AvailableServicesComponent } from './available-services/available-services.component';
+import { ProfileComponent } from './profile/profile.component';
+import { CustomerBookingsComponent } from './customer-bookings/customer-bookings.component';
 
 
 
@@ -38,15 +43,19 @@ import { AvailableServicesComponent } from './available-services/available-servi
     AddServiceComponent,
     ViewServiceComponent,
     AvailableServicesComponent,
+    ProfileComponent,
+    CustomerBookingsComponent,
 
   ],
   imports: [
+    Ng2SearchPipeModule,
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
     HttpClientModule,
     FormsModule,
     RouterModule.forRoot([
+      { path: 'profile', component: ProfileComponent },
       { path: "practice", component: PracticeComponent },
       { path: 'availableServices', component: AvailableServicesComponent },
       { path: '', component: LoginComponent },
@@ -56,7 +65,8 @@ import { AvailableServicesComponent } from './available-services/available-servi
       { path: 'providerHomePage', component: ProviderHomePageComponent },
       { path: 'addService', component: AddServiceComponent },
       { path: 'editBooking', component: EditBookingComponent },
-      { path: 'viewServices', component: ViewServiceComponent }
+      { path: 'viewServices', component: ViewServiceComponent },
+      { path: 'customerBookings', component: CustomerBookingsComponent }
     ])
   ],
   providers: [AuthService, AuthGuardService, ProviderService],

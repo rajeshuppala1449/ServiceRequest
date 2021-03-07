@@ -15,41 +15,43 @@
     </ul>
 </nav> 
 -->
-
-<div class="card">
-    <h4 class="card-header">Login</h4>
-    <div class="card-body">
-        <form [formGroup]="form" (ngSubmit)="login()">
-            <div class="alert alert-danger" *ngIf="form.errors">
-                <div *ngIf="form.errors.invalidLogin">Invalid login credentials</div>
-            </div>
-            <div class="form-group">
-                <label for="email">Email</label>
-                <input type="text" formControlName="email" class="form-control" />
-                <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
-                    <div *ngIf="email.errors.required"> email is required</div>
-                    <div *ngIf="email.errors.minlength"> email must be {{email.errors.minlength.requiredLength}}
-                        characters</div>
-                    <div *ngIf="email.errors.email">wrong format</div>
+<div class="container align-self-center" style="margin-top: 30px;">
+    <div class="card">
+        <h4 class="card-header">Login</h4>
+        <div class="card-body">
+            <form [formGroup]="form" (ngSubmit)="login()">
+                <div class="alert alert-danger" *ngIf="form.errors">
+                    <div *ngIf="form.errors.invalidLogin">Invalid login credentials</div>
                 </div>
-
-            </div>
-            <div class="form-group">
-                <label for="password">Password</label>
-                <input type="password" formControlName="password" class="form-control" />
-                <div *ngIf="form.get('password').touched && form.get('password').invalid" class="alert alert-danger">
-                    <div *ngIf="form.get('password').errors.required"> password is required</div>
-                    <div *ngIf="form.get('password').errors.minlength"> password must be 6 characters</div>
+                <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" formControlName="email" class="form-control" />
+                    <div *ngIf="email.touched && email.invalid" class="alert alert-danger">
+                        <div *ngIf="email.errors.required"> email is required</div>
+                        <div *ngIf="email.errors.minlength"> email must be {{email.errors.minlength.requiredLength}}
+                            characters</div>
+                        <div *ngIf="email.errors.email">wrong format</div>
+                    </div>
 
                 </div>
-            </div>
-            <div class="form-group">
-                <button type="submit" class="btn btn-primary">
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" formControlName="password" class="form-control" />
+                    <div *ngIf="form.get('password').touched && form.get('password').invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="form.get('password').errors.required"> password is required</div>
+                        <div *ngIf="form.get('password').errors.minlength"> password must be 6 characters</div>
 
-                    Login
-                </button>
-                <a class="btn btn-link" routerLink="registerUser">Register</a>
-            </div>
-        </form>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-primary">
+
+                        Login
+                    </button>
+                    <a class="btn btn-link" routerLink="registerUser">Register</a>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
