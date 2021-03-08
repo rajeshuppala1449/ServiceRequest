@@ -32,4 +32,7 @@ export class NavbarComponent implements OnInit {
     event.path[1].className += " active"
   }
 
+  logout() {
+    this.authService.logout();
+  }
 }

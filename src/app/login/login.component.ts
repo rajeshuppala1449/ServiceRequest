@@ -33,15 +33,26 @@ export class LoginComponent implements OnInit {
   }
 
   login() {
+
+
     if (this.form.valid) {
-      var valid = this.authService.login(this.form.value);
-      if (!valid) {
-        this.form.setErrors({
-          invalidLogin: true
+      this.authService.login(this.form.value)
+        .subscribe(data => {
+          localStorage.setItem("userId", data['userId'])
+          localStorage.setItem("userType", data['userType'])
+          if (data['userType'] == "customer") {
+            this.router.navigateByUrl('/userHomePage')
+          } else {
+            this.router.navigateByUrl('/providerHomePage')
+
+          }
+        }, err => {
+          this.form.setErrors({
+            invalidLogin: true
+          })
         })
-      } else {
-        this.router.navigateByUrl('/userHomePage')
-      }
+
+
     }
 
   }

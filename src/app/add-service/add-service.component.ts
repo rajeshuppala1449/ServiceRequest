@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
+import { UserService } from '../services/user.service';
+import { ProviderService } from '../services/provider.service'
 
 @Component({
   selector: 'app-add-service',
@@ -8,11 +10,19 @@ import { FormControl, FormGroup, Validators } from '@angular/forms'
 })
 export class AddServiceComponent implements OnInit {
 
-  services = ['House Cleaning', "car wash", "painting", "Saloon", "bike service"]
+  allServices
 
-  constructor() { }
+  constructor(private userService: UserService, private providerService: ProviderService) { }
 
   ngOnInit() {
+
+    this.userService.getAllServices()
+      .subscribe(data => {
+        this.allServices = data
+      }, err => {
+        console.log(err)
+      })
+
   }
 
 
@@ -28,8 +38,20 @@ export class AddServiceComponent implements OnInit {
     return this.form.controls;
   }
 
-  submit() {
-    console.log(this.form.value);
+  addService() {
+    //if (!this.form.value.newService) {
+    for (let x of this.allServices) {
+      if (x.serviceName == this.form.value.service) {
+        this.form.value.service = x.serviceId;
+      }
+    }
+    // }
+    this.providerService.addService(this.form.value)
+      .subscribe(data => {
+        console.log(data)
+      }, err => {
+        console.log(err)
+      })
   }
 
   changeService(e) {

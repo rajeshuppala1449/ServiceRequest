@@ -66,7 +66,8 @@ import { CustomerBookingsComponent } from './customer-bookings/customer-bookings
       { path: 'addService', component: AddServiceComponent },
       { path: 'editBooking', component: EditBookingComponent },
       { path: 'viewServices', component: ViewServiceComponent },
-      { path: 'customerBookings', component: CustomerBookingsComponent }
+      { path: 'customerBookings', component: CustomerBookingsComponent },
+      { path: 'addService', component: AddServiceComponent }
     ])
   ],
   providers: [AuthService, AuthGuardService, ProviderService],

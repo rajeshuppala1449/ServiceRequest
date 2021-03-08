@@ -1,41 +1,60 @@
 import { Injectable } from '@angular/core';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { getLocaleCurrencyName } from '@angular/common';
 
 @Injectable({
   providedIn: 'root'
 })
 
+
 export class AuthService {
 
-  constructor() { }
+  // baseUrl: string = "http://localhost:8900/"
+
+  userData = {}
+
+  constructor(private http: HttpClient) { }
 
   login(credentials) {
-    //localStorage.setItem('login', 'true');
-    console.log('logged in');
-    return true;
+
+    let postBody = { userMail: credentials.email, userPassword: credentials.password }
+    // console.log(postBody)
+
+    return this.http.post("/login", postBody)
   }
 
   logout() {
-    //localStorage.removeItem('login');
+    localStorage.removeItem("userId");
+    localStorage.removeItem("userType");
   }
 
-  register(details) {
-    localStorage.setItem('login', 'true')
-    return true
+  registerCustomer(details) {
+
+    let postBody = { customerName: details.name, password: details.password, customerEmail: details.email, customerPhone: details.phoneno, customerLocation: details.location }
+
+    return this.http.post("/customer/signup", postBody)
+
+  }
+
+  registerProvider(details) {
+
+    let postBody = { providerName: details.name, password: details.password, providerEmail: details.email, providerPhone: details.phoneno, providerLocation: details.location }
+
+    return this.http.post("/provider/signup", postBody)
+
   }
 
   isLoggedIn() {
-    // if (localStorage.getItem('login')) {
-    //   return true
-    // } else {
-    //   return false
-    // }
-    return true
+    if (localStorage.getItem('userId')) {
+      return true
+    }
+    else {
+      return false
+    }
   }
 
   userType(user) {
-    let type = "provider"
-    if (user == type) {
+    if (localStorage.getItem("userType") == user) {
       return true
     } else {
       return false

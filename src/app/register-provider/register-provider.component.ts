@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
+import { AuthService } from '../services/auth.service';
 import { Router } from '@angular/router'
 
 @Component({
@@ -9,7 +10,7 @@ import { Router } from '@angular/router'
 })
 export class RegisterProviderComponent {
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private authService: AuthService) { }
   form = new FormGroup({
     name: new FormControl('', [
       Validators.required,
@@ -32,16 +33,18 @@ export class RegisterProviderComponent {
   })
   register() {
 
-    if (this.form.valid) {
-      let valid = false
-      if (!valid) {
+    this.authService.registerProvider(this.form.value)
+      .subscribe(data => {
+
+        this.router.navigateByUrl('/')
+
+      }, err => {
+
         this.form.setErrors({
           alreadyExists: true
         })
-      } else {
-        this.router.navigateByUrl('/providerHomePage')
-      }
-    }
+
+      })
 
   }
 }

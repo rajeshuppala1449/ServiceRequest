@@ -3,13 +3,13 @@
         <h4 class="card-header">Add Service</h4>
         <div class="card-body">
 
-            <form [formGroup]="form" (ngSubmit)="submit()">
+            <form [formGroup]="form" (ngSubmit)="addService()">
                 <div class="row">
                     <div class="form-group col-6">
                         <label for="service">service:</label>
                         <select formControlName="service" class="form-control" (change)="changeService($event)">
                             <option disabled>Select service</option>
-                            <option *ngFor="let service of services">{{service}}</option>
+                            <option *ngFor="let service of allServices">{{service.serviceName}}</option>
                             <option>other</option>
                         </select>
                         <div *ngIf="f.service.touched && f.service.invalid" class="alert alert-danger">

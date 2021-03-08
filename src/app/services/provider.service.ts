@@ -13,8 +13,9 @@ export class ProviderService {
 
   }
 
-  getMyServices(providerId) {
-    return this.http.get("https://run.mocky.io/v3/e42d8c4d-a76e-4dfc-8d26-5db55b69ac1c");
+  getMyServices() {
+    return this.http.get(`/provider/service/all?providerId=${localStorage.getItem("userId")}`)
+
   }
 
   getCustomerDetails(customerId) {
@@ -23,6 +24,29 @@ export class ProviderService {
 
   updateStatus(bookindId, newStatus) {
 
+  }
+
+  addService(details) {
+    let postBody = {}
+    let x
+    if (details.newService) {
+
+      this.http.post<{ serviceId: number; serviceName: string }>('/service/addService', { serviceName: details.newService })
+        .subscribe(data => {
+          console.log(data);
+          postBody = { serviceId: data.serviceId, providerId: parseInt(localStorage.getItem("userId")), serviceDescription: details.desc, discount: details.discount, price: details.price }
+          console.log(postBody)
+          x = this.http.post('/provider/service/addService', postBody)
+        }, err => {
+          console.log(err)
+        })
+
+    } else {
+      postBody = { serviceId: parseInt(details.service), providerId: parseInt(localStorage.getItem("userId")), serviceDescription: details.desc, discount: details.discount, price: details.price }
+      x = this.http.post('/provider/service/addService', postBody)
+    }
+
+    return x;
   }
 
 }

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ProviderService } from '../services/provider.service';
+import { ActivatedRoute, Router } from '@angular/router'
 import { FormControl, FormGroup, Validators } from "@angular/forms"
+import { Route } from '@angular/compiler/src/core';
 
 @Component({
   selector: 'app-view-service',
@@ -9,17 +11,18 @@ import { FormControl, FormGroup, Validators } from "@angular/forms"
 })
 export class ViewServiceComponent implements OnInit {
 
-  customerId = 1
-  currentServiceId = -1
-  myServices = {}
-  constructor(private providerService: ProviderService) { }
+  // customerId = 1
+  currentService
+  myServices
+  constructor(private providerService: ProviderService, private router: Router) { }
 
   ngOnInit() {
 
-    this.providerService.getMyServices(this.customerId)
-      .subscribe(response => {
-        this.myServices = response["services"]
-        console.log(this.myServices)
+    this.providerService.getMyServices()
+      .subscribe(data => {
+        this.myServices = data
+      }, err => {
+        console.log(err)
       })
 
   }
@@ -30,14 +33,18 @@ export class ViewServiceComponent implements OnInit {
   })
 
   updateService(param) {
-    this.currentServiceId = param
+    this.currentService = param
     console.log(param)
   }
 
   saveChanges() {
-    console.log(this.currentServiceId)
+    console.log(this.currentService)
     console.log(this.form.value)
     ///need to rerender this page
+  }
+
+  addService() {
+    this.router.navigate(['/addService'])
   }
 
 }

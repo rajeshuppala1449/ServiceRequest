@@ -38,7 +38,8 @@ export class AvailableServicesComponent implements OnInit {
         console.log(this.bookings)
       })
     this.selectFilter("servicename")
-    //this.filterBookings(this.route.snapshot.queryParamMap.get('service'))
+    console.log(this.route.snapshot.queryParamMap.get("serviceId"))
+
 
   }
 

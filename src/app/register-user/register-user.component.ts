@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms'
 import { Router } from '@angular/router';
+import { error } from 'selenium-webdriver';
 import { AuthService } from '../services/auth.service';
 
 
@@ -34,16 +35,19 @@ export class RegisterUserComponent {
   })
 
   register() {
-    if (this.form.valid) {
-      let valid = this.authService.register(this.form.value)
-      if (!valid) {
+
+    this.authService.registerCustomer(this.form.value)
+      .subscribe(data => {
+
+        this.router.navigateByUrl('/')
+
+      }, err => {
+
         this.form.setErrors({
           alreadyExists: true
         })
-      } else {
-        this.router.navigateByUrl('/userHomePage')
-      }
-    }
+
+      })
 
   }
 
