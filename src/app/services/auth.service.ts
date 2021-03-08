@@ -34,7 +34,7 @@ export class AuthService {
   }
 
   userType(user) {
-    let type = "customer"
+    let type = "provider"
     if (user == type) {
       return true
     } else {

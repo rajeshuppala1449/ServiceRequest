@@ -22,10 +22,12 @@ export class PracticeComponent implements OnInit {
   ngOnInit() { }
 
 
-  getRating(t: string) {
-    this.rating = t;
-    console.log(this.rating);
-  }
+
+
+  // getRating(t: string) {
+  //   this.rating = t;
+  //   console.log(this.rating);
+  // }
 
 
 }
