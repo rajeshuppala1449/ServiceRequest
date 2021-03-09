@@ -32,14 +32,20 @@ export class ViewServiceComponent implements OnInit {
     price: new FormControl('', Validators.required)
   })
 
-  updateService(param) {
+  updateSelection(param) {
     this.currentService = param
     console.log(param)
   }
 
-  saveChanges() {
+  updateService() {
     console.log(this.currentService)
     console.log(this.form.value)
+    this.providerService.updateService(this.currentService, this.form.value)
+      .subscribe(data => {
+        this.router.navigateByUrl('/providerHomePage')
+      }, err => {
+        console.log(err)
+      })
     ///need to rerender this page
   }
 

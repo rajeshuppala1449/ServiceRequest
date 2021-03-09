@@ -1,7 +1,7 @@
 <button type="button" class="btn btn-primary" (click)="addService()">Update</button>
 <div style="margin-left: 20%;margin-right: 20%;margin-top: 10%;">
     <div data-toggle="modal" data-target="#exampleModalCenter"
-        style="display: flex;float: left;margin-left: 10px;margin-bottom: 10px;" (click)="updateService(service)"
+        style="display: flex;float: left;margin-left: 10px;margin-bottom: 10px;" (click)="updateSelection(service)"
         *ngFor="let service of myServices" class="serviceCard">
         <div class="card" style="width: 18rem;">
             <div class="card-body">
@@ -41,7 +41,8 @@
                 </div>
                 <div class="modal-footer">
 
-                    <button type="button" class="btn btn-primary" (click)="saveChanges()">Update</button>
+                    <button type="button" class="btn btn-primary" data-dismiss="modal"
+                        (click)="updateService()">Update</button>
                 </div>
             </form>
         </div>

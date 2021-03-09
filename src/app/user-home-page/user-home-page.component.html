@@ -24,7 +24,7 @@
         <div class=" card"
             style=" display:flex;float:left ; width: 200px; height:180px; margin-left: 5px; margin-right: 5px; margin-top: 5px; margin-bottom: 5px;"
             *ngFor="let service of displayServices" routerLink='/availableServices'
-            [queryParams]="{service: service.serviceName}">
+            [queryParams]="{serviceId: service.serviceName,serviceId:service.serviceId}">
             <img height="100" width="100" class="align-self-center" src={{service.image}} alt={{service.serviceName}}>
             <div class="card-body">
                 <p class="card-text">{{service.serviceName }}</p>

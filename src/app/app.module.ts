@@ -67,8 +67,8 @@ import { CustomerBookingsComponent } from './customer-bookings/customer-bookings
       { path: 'editBooking', component: EditBookingComponent },
       { path: 'viewServices', component: ViewServiceComponent },
       { path: 'customerBookings', component: CustomerBookingsComponent },
-      { path: 'addService', component: AddServiceComponent }
-    ])
+      { path: 'addService', component: AddServiceComponent },
+    ], { onSameUrlNavigation: 'reload' })
   ],
   providers: [AuthService, AuthGuardService, ProviderService],
   bootstrap: [AppComponent]

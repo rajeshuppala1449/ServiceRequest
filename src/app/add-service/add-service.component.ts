@@ -11,6 +11,7 @@ import { ProviderService } from '../services/provider.service'
 export class AddServiceComponent implements OnInit {
 
   allServices
+  displayButton = false
 
   constructor(private userService: UserService, private providerService: ProviderService) { }
 
@@ -55,7 +56,26 @@ export class AddServiceComponent implements OnInit {
   }
 
   changeService(e) {
-    console.log(e.target.value);
+    if (e.target.value == "other") {
+      this.displayButton = true
+    } else {
+      this.displayButton = false
+    }
+  }
+
+  addNewService() {
+
+    console.log(this.allServices)
+
+    this.providerService.addNewService(this.form.value.newService)
+      .subscribe(data => {
+        this.allServices.push(data)
+        this.displayButton = false
+      }, err => {
+        console.log(err)
+      })
+
+
   }
 
 }

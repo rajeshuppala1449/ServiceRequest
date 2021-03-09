@@ -9,19 +9,20 @@ import { Router } from '@angular/router'
 })
 export class ProviderHomePageComponent implements OnInit {
   arr = [0, 1, 2, 3, 4]
-  statusArr = ["booked", "accepted", "finished", "cancelled", "rejected", "No filter"]
-  allbookings = []
-  bookings = []
-  selectedStatus = "No filter"
+  statusArr = ['Processing', 'Cancelled', 'Accepted', 'Completed', 'Nofilter']
+  allbookings
+  bookings
+  selectedStatus = "Nofilter"
   constructor(private providerService: ProviderService,
     private router: Router) { }
 
   ngOnInit() {
     this.providerService.getBookings()
-      .subscribe(response => {
-        this.bookings = response['bookings']
-        this.allbookings = this.bookings
-        console.log(this.bookings)
+      .subscribe(data => {
+        this.bookings = data;
+        this.allbookings = data
+      }, err => {
+        console.log(err)
       })
   }
 
@@ -33,11 +34,13 @@ export class ProviderHomePageComponent implements OnInit {
 
   filterBookings(selectedStatus) {
     this.selectedStatus = selectedStatus
-    if (selectedStatus == "No filter") {
+    if (selectedStatus == "Nofilter") {
       this.bookings = this.allbookings
     } else {
-      this.bookings = this.allbookings.filter(x => { return this.selectedStatus == x.status })
+      this.bookings = this.allbookings.filter(x => { return this.selectedStatus == x.bookingStatus })
     }
   }
+
+
 }
 

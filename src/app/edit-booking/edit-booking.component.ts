@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router'
 import { ProviderService } from '../services/provider.service';
+import { AuthService } from '../services/auth.service'
+import { FormsModule } from '@angular/forms'
+import { UserService } from '../services/user.service'
 
 @Component({
   selector: 'app-edit-booking',
@@ -9,34 +12,64 @@ import { ProviderService } from '../services/provider.service';
 })
 export class EditBookingComponent implements OnInit {
   rating: string;
-  booking = {}
-  statusArr = { "BOOKED": "booked", "ACCEPTED": "accepted", "CANCELLED": "cancelled", "FINISHED": "finished", "REJECTED": "rejected" }
+  booking
+  desc
+  statusArr = { "PROCESSING": "Processing", "CANCELLED": "Cancelled", "ACCEPTED": "Accepted", "COMPLETED": "Completed" }
   constructor(private route: ActivatedRoute,
     private providerService: ProviderService,
-    private router: Router) { }
+    private router: Router,
+    private userService: UserService,
+    private authService: AuthService) { }
 
   ngOnInit() {
     this.booking = JSON.parse(this.route.snapshot.queryParamMap.get('booking'));
     console.log(this.booking)
+    //console.log(this.booking)
     // this.providerService.getCustomerDetails()
     //this.booking.location = "Hyderabad"
-    console.log(this.booking)
+    //console.log(this.booking)
 
   }
 
-  checkStatus(status) {
-    //return this.booking.status == status;
+  checkStatus(status, type) {
+    //console.log(status, this.booking.bookingStatus)
+    if (type) {
+      return this.booking.bookingStatus == status && this.authService.userType(type);
+    } else {
+      return this.booking.bookingStatus == status
+    }
   }
 
   updateStatus(newStatus) {
-    // this.providerService.updateStatus(this.bookingId,newStatus)
-    console.log(newStatus)
-    this.router.navigateByUrl("providerHomePage")
+    console.log(this.booking.bookingId)
+    this.providerService.updateBookingStatus(this.booking.bookingId, newStatus)
+      .subscribe(data => {
+        if (data == '1') {
+          if (this.authService.userType('provider')) {
+            this.router.navigate(['/providerHomePage'])
+          } else {
+            this.router.navigate(['/customerBookings'])
+          }
+        }
+      }, err => {
+        console.log(err)
+      })
   }
 
   getRating(t: string) {
     this.rating = t;
     console.log(this.rating);
+  }
+
+  submitFeedback() {
+
+    this.userService.submitRating(this.booking.bookingId, this.rating, this.desc)
+    // .subscribe(data => {
+
+    // }, err => {
+    //   console.log(err)
+    // })
+
   }
 
 

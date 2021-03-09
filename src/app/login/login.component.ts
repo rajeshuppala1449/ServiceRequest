@@ -24,7 +24,8 @@ export class LoginComponent implements OnInit {
     email: new FormControl('', [Validators.required, Validators.minLength(3), Validators.email]),
     password: new FormControl('', [
       Validators.required,
-      Validators.minLength(6)])
+      Validators.minLength(6)]),
+    userType: new FormControl('', Validators.required)
   }
   )
 
@@ -34,12 +35,13 @@ export class LoginComponent implements OnInit {
 
   login() {
 
-
+    console.log(this.form.value)
     if (this.form.valid) {
       this.authService.login(this.form.value)
         .subscribe(data => {
           localStorage.setItem("userId", data['userId'])
           localStorage.setItem("userType", data['userType'])
+          localStorage.setItem('user', JSON.stringify(data))
           if (data['userType'] == "customer") {
             this.router.navigateByUrl('/userHomePage')
           } else {

@@ -45,6 +45,22 @@
                     </div>
                 </div>
                 <div class="form-group">
+                    <label for="userType">User Type:</label>
+                    <div>
+                        <input id="provider" type="radio" value="provider" name="userType" formControlName="userType">
+                        <label for="provider">Service Provider</label>
+                    </div>
+                    <div>
+                        <input id="customer" type="radio" value="customer" name="userType" formControlName="userType">
+                        <label for="customer">customer</label>
+                    </div>
+
+                    <div *ngIf="form.get('userType').touched && form.get('userType').invalid"
+                        class="alert alert-danger">
+                        <div *ngIf="form.get('userType').errors.required">User Type is required.</div>
+                    </div>
+                </div>
+                <div class="form-group">
                     <button type="submit" class="btn btn-primary">
 
                         Login

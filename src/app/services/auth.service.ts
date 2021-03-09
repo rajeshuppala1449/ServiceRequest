@@ -26,6 +26,7 @@ export class AuthService {
   logout() {
     localStorage.removeItem("userId");
     localStorage.removeItem("userType");
+    localStorage.removeItem("user")
   }
 
   registerCustomer(details) {

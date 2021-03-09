@@ -16,8 +16,8 @@
 
         <div class=" card">
             <div style="display: flex;justify-content: space-between;align-items: center;" class="card-header">
-                <div style="font-size: 20px;font-weight: bold;">{{booking.servicename}}</div>
-                <div style="border: 1px solid black; padding: 5px; border-radius: 20px;">{{booking.status}}
+                <div style="font-size: 20px;font-weight: bold;">{{booking.serviceName}}</div>
+                <div style="border: 1px solid black; padding: 5px; border-radius: 20px;">{{booking.bookingStatus}}
                 </div>
 
             </div>
@@ -25,19 +25,19 @@
                 <div style="display: flex;align-items: center;">
                     <div>
                         <h5 class="card-text"><i
-                                class="fas fa-user-alt"></i><label>&nbsp;&nbsp;{{booking.customername}}</label>
+                                class="fas fa-user-alt"></i><label>&nbsp;&nbsp;{{booking.providerName}}</label>
                         </h5>
                         <h6 class="card-text"><i
-                                class="fas fa-calendar-day"></i><label>&nbsp;&nbsp;{{booking.bookingtime}}</label>
+                                class="fas fa-calendar-day"></i><label>&nbsp;&nbsp;{{booking.bookingDate}}</label>
                         </h6>
                     </div>
                     <div style="margin-left: 70%;">
                         <p style="font-size: 30px;font-weight:bold" class="card-text"><i
-                                class="fas fa-rupee-sign"></i><label>&nbsp;{{booking.price}}</label>
+                                class="fas fa-rupee-sign"></i><label>&nbsp;{{booking.bookingCost}}</label>
                         </p>
                     </div>
                 </div>
-                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
 
             </div>
         </div>

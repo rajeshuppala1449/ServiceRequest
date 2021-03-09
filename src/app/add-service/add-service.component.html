@@ -16,9 +16,11 @@
                             <div *ngIf="f.service.errors.required">Name is required.</div>
                         </div>
                     </div>
-                    <div class="form-group col-6">
+                    <div *ngIf="displayButton" class="form-group col-6">
                         <label for="newService">newservice</label>
                         <input type="text" formControlName="newService" class="form-control" />
+                        <button style="margin-top: 3px;" class="btn btn-primary" (click)="addNewService()">add
+                            Service</button>
                     </div>
                 </div>
 
