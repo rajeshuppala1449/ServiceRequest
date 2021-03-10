@@ -1,5 +1,8 @@
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
-    <a class="navbar-brand" href="#" style="font-size: 25px;">Service Request</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+    <div>
+        <a class="navbar-brand mr-auto" href="#"><img src="assets/images/logo.png" height="50" width="50"></a>&nbsp;
+        <a class="navbar-brand" href="#" style="font-size: 25px;">Service Request</a>
+    </div>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
         aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
@@ -19,7 +22,7 @@
                 <a *ngIf="isProvider()" class="nav-link" routerLink="viewServices">My Services</a>
             </li>
             <li class="nav-item" id="5" *ngIf="isProvider()" (click)="buttonClick($event)">
-                <a class="nav-link" routerLink="profile">Dashboard</a>
+                <a class="nav-link" routerLink="dashboard">Dashboard</a>
             </li>
             <li class="nav-item" id="3" (click)="buttonClick($event)">
                 <a class="nav-link" routerLink="profile">Profile</a>

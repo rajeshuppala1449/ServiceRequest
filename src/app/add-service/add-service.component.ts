@@ -60,7 +60,7 @@ export class AddServiceComponent implements OnInit {
   }
 
   changeService(e) {
-    if (e.target.value == "other") {
+    if (e.target.value == "Other") {
       this.displayButton = true
     } else {
       this.displayButton = false

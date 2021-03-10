@@ -1,9 +1,9 @@
-body{
+/* body{
     margin-top:20px;
     color: #1a202c;
     text-align: left;
     background-color: #e2e8f0;
-  }
+  } */
   .main-body {
     padding: 15px;
   }
@@ -51,4 +51,9 @@ body{
   .shadow-none {
     box-shadow: none!important;
   }
-  
+  body {
+    background: #e8cbc0;
+    background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+    background: linear-gradient(to right, #e8cbc0, #636fa4);
+    min-height: 100vh;
+}

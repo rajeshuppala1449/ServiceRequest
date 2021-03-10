@@ -46,4 +46,9 @@ export class ProviderService {
 
   }
 
+
+  getDashboard() {
+    return this.http.get(`/provider/dashboard?providerId=${localStorage.getItem('userId')}`)
+  }
+
 }

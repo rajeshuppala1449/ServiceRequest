@@ -9,10 +9,10 @@ import { Router } from '@angular/router'
 })
 export class CustomerBookingsComponent implements OnInit {
   arr = [0, 1, 2, 3, 4]
-  statusArr = ['Processing', 'Cancelled', 'Accepted', 'Completed', 'Nofilter']
+  statusArr = ['Apply Filter', 'Processing', 'Cancelled', 'Accepted', 'Completed']
   allbookings
   bookings
-  selectedStatus = "Nofilter"
+  selectedStatus = "Apply Filter"
   constructor(private userService: UserService,
     private router: Router) { }
 
@@ -34,7 +34,7 @@ export class CustomerBookingsComponent implements OnInit {
 
   filterBookings(selectedStatus) {
     this.selectedStatus = selectedStatus
-    if (selectedStatus == "Nofilter") {
+    if (selectedStatus == "Apply Filter") {
       this.bookings = this.allbookings
     } else {
       this.bookings = this.allbookings.filter(x => { return this.selectedStatus == x.bookingStatus })

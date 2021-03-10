@@ -15,7 +15,7 @@ export class AvailableServicesComponent implements OnInit {
   serviceId
   allbookings
   bookings
-  selectedFilter = "Nofilter"
+  selectedFilter = "Apply Filter"
 
 
   pricesFilter = [[0, 500], [500, 1000], [1000, 2000], [2000, 3000], [3000, 5000]]
@@ -68,15 +68,18 @@ export class AvailableServicesComponent implements OnInit {
   }
 
   filterBookings(selectedStatus) {
-    if (selectedStatus == "Nofilter") {
+    if (selectedStatus == "Apply Filter") {
+      this.selectedFilter = selectedStatus
       this.bookings = this.allbookings
     } else {
+      this.selectedFilter = selectedStatus[0] + " to " + selectedStatus[1]
+
       this.bookings = this.allbookings.filter(x => { return selectedStatus[0] <= x.price && x.price <= selectedStatus[1] })
     }
   }
 
   // selectFilter(filter) {
-  //   this.selectedStatus = "Nofilter"
+  //   this.selectedFilter = "Nofilter"
   //   this.selectedFilter = filter
   //   this.statusArr = this.filters[filter]
   // }

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { ElementRef, ViewChild } from '@angular/core';
 
+import { ProviderService } from '../services/provider.service'
+
 import * as $ from 'jquery';
 //import * as CanvasJS from './imports/canvasjs.min';
 //var CanvasJS = require('./canvasjs.min');
@@ -9,15 +11,15 @@ import * as $ from 'jquery';
 
 // import CanvasJS from 'canvasjs';
 import * as CanvasJS from './canvasjs.min';
-import html2canvas from 'html2canvas';
+// import html2canvas from 'html2canvas';
 
-import { jsPDF } from "jspdf";
+// import { jsPDF } from "jspdf";
 
 import { DETAILS } from '../dashboard/details';
 
-import pdfMake from 'pdfmake/build/pdfmake';
-import pdfFonts from 'pdfmake/build/vfs_fonts';
-pdfMake.vfs = pdfFonts.pdfMake.vfs;
+// import pdfMake from 'pdfmake/build/pdfmake';
+// import pdfFonts from 'pdfmake/build/vfs_fonts';
+// pdfMake.vfs = pdfFonts.pdfMake.vfs;
 
 @Component({
   selector: 'app-dashboard',
@@ -26,11 +28,23 @@ pdfMake.vfs = pdfFonts.pdfMake.vfs;
 })
 export class DashboardComponent implements OnInit {
 
-  constructor() { }
+  constructor(private providerService: ProviderService) { }
+  details
 
   ngOnInit() {
-    //CHART1
-    const t1 = DETAILS.providerServiceCustomers;
+
+    this.providerService.getDashboard()
+      .subscribe(data => {
+        this.details = data
+        this.renderCharts()
+      }, err => {
+        console.log(err)
+      })
+
+  }
+
+  renderCharts() {
+    const t1 = this.details.providerServiceCustomers;
     for (let i of t1) {
       i["label"] = i.serviceName;
       i["y"] = i.numberOfCustomer;
@@ -40,7 +54,7 @@ export class DashboardComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Basic Column Chart in Angular"
+        text: "Customer per Service"
       },
       data: [{
         type: "column",
@@ -50,7 +64,7 @@ export class DashboardComponent implements OnInit {
     chart0.render();
 
     //CHART2
-    const t2 = DETAILS.providerServiceBookings;
+    const t2 = this.details.providerServiceBookings;
     for (let i of t2) {
       i["label"] = i.serviceName;
       i["y"] = i.numberOfBookings;
@@ -60,7 +74,7 @@ export class DashboardComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Basic Column Chart in Angular"
+        text: "Monthly Bookings"
       },
       data: [{
         type: "column",
@@ -70,7 +84,7 @@ export class DashboardComponent implements OnInit {
     chart.render();
 
     //CHART3
-    const t3 = DETAILS.providerServiceRevenue;
+    const t3 = this.details.providerServiceRevenue;
     for (let i of t3) {
       i["label"] = i.serviceName;
       i["y"] = i.serviceRevenue;
@@ -81,13 +95,13 @@ export class DashboardComponent implements OnInit {
       animationEnabled: true,
       exportEnabled: true,
       title: {
-        text: "Monthly Expense"
+        text: "Monthly Revenue"
       },
       data: [{
         type: "pie",
-        showInLegend: true,
-        toolTipContent: "<b>{name}</b>: ${y} (#percent%)",
-        indexLabel: "{name} - #percent%",
+        showInLegend: false,
+        toolTipContent: "<b>{label}</b>: Rs.{y} ",
+        indexLabel: "{label} - #percent%",
         dataPoints: t3
       }]
     });
@@ -104,64 +118,64 @@ export class DashboardComponent implements OnInit {
   //  }
 
 
-  @ViewChild('screen') screen: ElementRef;
-  @ViewChild('canvas') canvas: ElementRef;
-  @ViewChild('downloadLink') downloadLink: ElementRef;
+  // @ViewChild('screen') screen: ElementRef;
+  // @ViewChild('canvas') canvas: ElementRef;
+  // @ViewChild('downloadLink') downloadLink: ElementRef;
 
-  downloadImage() {
-    html2canvas(this.screen.nativeElement).then(canvas => {
-      this.canvas.nativeElement.src = canvas.toDataURL();
-      this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
-      this.downloadLink.nativeElement.download = 'marble-diagram.png';
-      this.downloadLink.nativeElement.click();
-    });
-  }
-
-
-
-  generatePdf() {
-    const div = document.getElementById("html2Pdf");
-    const options = { background: "white", height: div.clientHeight, width: div.clientWidth };
-
-    var HTML_Width = $(".html-content").width() * 3;
-    var HTML_Height = $(".html-content").height() * 3;
-    var top_left_margin = 15;
-    var PDF_Width = HTML_Width + (top_left_margin * 2);
-    var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
-    var canvas_image_width = HTML_Width;
-    var canvas_image_height = HTML_Height;
-    var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
+  // downloadImage() {
+  //   html2canvas(this.screen.nativeElement).then(canvas => {
+  //     this.canvas.nativeElement.src = canvas.toDataURL();
+  //     this.downloadLink.nativeElement.href = canvas.toDataURL('image/png');
+  //     this.downloadLink.nativeElement.download = 'marble-diagram.png';
+  //     this.downloadLink.nativeElement.click();
+  //   });
+  // }
 
 
-    html2canvas(div, options).then((canvas) => {
-      //Initialize JSPDF
-      let doc = new jsPDF("p", "mm", "a4");
-      //Converting canvas to Image
-      let imgData = canvas.toDataURL("image/PNG");
-      //Add image Canvas to PDF
-      doc.addImage(imgData, 'PNG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
 
-      let pdfOutput = doc.output();
+  // generatePdf() {
+  //   const div = document.getElementById("html2Pdf");
+  //   const options = { background: "white", height: div.clientHeight, width: div.clientWidth };
 
-      // let buffer = new ArrayBuffer(pdfOutput.length);
-      // let array = new Uint8Array(buffer);
-      // for (let i = 0; i < pdfOutput.length; i++) {
-      //     array[i] = pdfOutput.charCodeAt(i);
-      // }
+  //   var HTML_Width = $(".html-content").width() * 3;
+  //   var HTML_Height = $(".html-content").height() * 3;
+  //   var top_left_margin = 15;
+  //   var PDF_Width = HTML_Width + (top_left_margin * 2);
+  //   var PDF_Height = (PDF_Width * 1.5) + (top_left_margin * 2);
+  //   var canvas_image_width = HTML_Width;
+  //   var canvas_image_height = HTML_Height;
+  //   var totalPDFPages = Math.ceil(HTML_Height / PDF_Height) - 1;
 
-      for (var i = 1; i <= totalPDFPages; i++) {
-        doc.addPage([PDF_Width, PDF_Height], 'p');
-        doc.addImage(imgData, 'PNG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
-      }
 
-      //Name of pdf
-      const fileName = "example.pdf";
+  //   html2canvas(div, options).then((canvas) => {
+  //     //Initialize JSPDF
+  //     let doc = new jsPDF("p", "mm", "a4");
+  //     //Converting canvas to Image
+  //     let imgData = canvas.toDataURL("image/PNG");
+  //     //Add image Canvas to PDF
+  //     doc.addImage(imgData, 'PNG', top_left_margin, top_left_margin, canvas_image_width, canvas_image_height);
 
-      // Make file
-      doc.save(fileName);
+  //     let pdfOutput = doc.output();
 
-    });
-  }
+  //     // let buffer = new ArrayBuffer(pdfOutput.length);
+  //     // let array = new Uint8Array(buffer);
+  //     // for (let i = 0; i < pdfOutput.length; i++) {
+  //     //     array[i] = pdfOutput.charCodeAt(i);
+  //     // }
+
+  //     for (var i = 1; i <= totalPDFPages; i++) {
+  //       doc.addPage([PDF_Width, PDF_Height], 'p');
+  //       doc.addImage(imgData, 'PNG', top_left_margin, -(PDF_Height * i) + (top_left_margin * 4), canvas_image_width, canvas_image_height);
+  //     }
+
+  //     //Name of pdf
+  //     const fileName = "example.pdf";
+
+  //     // Make file
+  //     doc.save(fileName);
+
+  //   });
+  // }
 
 
   // downloadImage()

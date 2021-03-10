@@ -4,10 +4,10 @@
   
    @import url(//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css);
   
-   body
+   /* body
    {
      background: #4a4a4c !important;
-   }
+   } */
   
    .starrating > input {display: none;}  /* Remove radio buttons */
   
@@ -29,3 +29,9 @@
   
    .starrating > input:hover ~ label
    { color: #ffca08 ;  } /* Set yellow color when star hover */
+   body {
+    background: #e8cbc0;
+    background: -webkit-linear-gradient(to right, #e8cbc0, #636fa4);
+    background: linear-gradient(to right, #e8cbc0, #636fa4);
+    min-height: 100vh;
+}

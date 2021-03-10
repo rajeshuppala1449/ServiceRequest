@@ -70,6 +70,7 @@ import { DashboardComponent } from './dashboard/dashboard.component';
       { path: 'viewServices', component: ViewServiceComponent },
       { path: 'customerBookings', component: CustomerBookingsComponent },
       { path: 'addService', component: AddServiceComponent },
+      { path: 'dashboard', component: DashboardComponent }
     ], { onSameUrlNavigation: 'reload' })
   ],
   providers: [AuthService, AuthGuardService, ProviderService],
