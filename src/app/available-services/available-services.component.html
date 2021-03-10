@@ -1,8 +1,8 @@
 <!-- <app-navbar></app-navbar> -->
 <div style="margin-top: 40px;margin-right: 20%;margin-left: 20%;">
-    <!--    <div class="row">
-        <div class="col-8"></div>
-        <div class="dropdown show col-2">
+    <div class="row">
+        <div class="col-10"></div>
+        <!-- <div class="dropdown show col-2">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 {{selectedFilter}}
@@ -11,19 +11,19 @@
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
                 <a *ngFor="let filter of filterArr" class="dropdown-item" (click)="selectFilter(filter)">{{filter}}</a>
             </div>
-        </div>
+        </div> -->
         <div class="dropdown show col-2">
             <a class="btn btn-secondary dropdown-toggle" href="#" role="button" id="dropdownMenuLink"
                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                {{selectedStatus}}
+                {{selectedFilter}}
             </a>
 
             <div class="dropdown-menu" aria-labelledby="dropdownMenuLink">
-                <a *ngFor="let status of statusArr" class="dropdown-item"
-                    (click)="filterBookings(status)">{{status}}</a>
+                <a *ngFor="let status of pricesFilter" class="dropdown-item"
+                    (click)="filterBookings(status)">{{status[0]+" to "+status[1]}}</a>
             </div>
         </div>
-    </div> -->
+    </div>
 
     <div data-toggle="modal" data-target="#exampleModalCenter" *ngFor="let booking of bookings"
         style="margin-top: 20px;" class="bookingcard" (click)="selectService(booking)">
@@ -36,21 +36,28 @@
 
             </div>
             <div class="card-body">
-                <div style="display: flex;align-items: center;">
+                <div style="display: flex">
                     <div>
                         <h5 class="card-text"><i
                                 class="fas fa-user-alt"></i><label>&nbsp;&nbsp;{{booking.foreignProviderId.providerName}}</label>
                         </h5>
-                        <h5 class="card-text">Rating</h5>
-                        <h5 class="card-text">Discount:{{booking.discount}}</h5>
-
+                        <h5 class="card-text"><i class="fa fa-map-marker"
+                                aria-hidden="true"></i><label>&nbsp;&nbsp;{{booking.foreignProviderId.providerLocation}}</label>
+                        </h5>
 
                     </div>
                     <div style="margin-left: 70%;">
-                        <p style="font-weight:bold" class="card-text"><i
+                        <p style="font-weight:bold;font-size: 20px;"><i
                                 class="fas fa-rupee-sign"></i><label>&nbsp;{{booking.price}}</label>
+                            <br>
+                            <label>&nbsp;&nbsp;-{{booking.discount}}%</label>
+                            <br>
+                            <label>-------------</label>
+                            <br>
+                        <p style="font-weight:bold;font-size: 20px;"><i
+                                class="fas fa-rupee-sign"></i><label>&nbsp;{{booking.price*(1-(booking.discount/100))}}</label>
+                            <br>
                         </p>
-
                     </div>
                 </div>
                 <p class="card-text">{{booking.serviceDescription}}</p>
@@ -66,7 +73,7 @@
     <div class="modal-dialog modal-dialog-centered" role="document">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+                <!-- <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5> -->
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                 </button>

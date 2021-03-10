@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms'
 import { UserService } from '../services/user.service';
 import { ProviderService } from '../services/provider.service'
+import { Router } from "@angular/router"
 
 @Component({
   selector: 'app-add-service',
@@ -13,7 +14,9 @@ export class AddServiceComponent implements OnInit {
   allServices
   displayButton = false
 
-  constructor(private userService: UserService, private providerService: ProviderService) { }
+  constructor(private userService: UserService,
+    private providerService: ProviderService,
+    private router: Router) { }
 
   ngOnInit() {
 
@@ -50,6 +53,7 @@ export class AddServiceComponent implements OnInit {
     this.providerService.addService(this.form.value)
       .subscribe(data => {
         console.log(data)
+        this.router.navigate(['/viewServices'])
       }, err => {
         console.log(err)
       })

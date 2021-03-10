@@ -44,13 +44,14 @@ export class EditBookingComponent implements OnInit {
     console.log(this.booking.bookingId)
     this.providerService.updateBookingStatus(this.booking.bookingId, newStatus)
       .subscribe(data => {
-        if (data == '1') {
-          if (this.authService.userType('provider')) {
-            this.router.navigate(['/providerHomePage'])
-          } else {
-            this.router.navigate(['/customerBookings'])
-          }
+        console.log(data)
+
+        if (this.authService.userType('provider')) {
+          this.router.navigate(['/providerHomePage'])
+        } else {
+          this.router.navigate(['/customerBookings'])
         }
+
       }, err => {
         console.log(err)
       })
@@ -64,11 +65,11 @@ export class EditBookingComponent implements OnInit {
   submitFeedback() {
 
     this.userService.submitRating(this.booking.bookingId, this.rating, this.desc)
-    // .subscribe(data => {
-
-    // }, err => {
-    //   console.log(err)
-    // })
+      .subscribe(data => {
+        this.router.navigate(['/customerBookings'])
+      }, err => {
+        console.log(err)
+      })
 
   }
 

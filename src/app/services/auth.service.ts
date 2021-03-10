@@ -20,7 +20,7 @@ export class AuthService {
     let postBody = { userMail: credentials.email, userPassword: credentials.password }
     // console.log(postBody)
 
-    return this.http.post("/login", postBody)
+    return this.http.post(`/login/${credentials.userType}`, postBody)
   }
 
   logout() {

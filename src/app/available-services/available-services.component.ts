@@ -15,6 +15,10 @@ export class AvailableServicesComponent implements OnInit {
   serviceId
   allbookings
   bookings
+  selectedFilter = "Nofilter"
+
+
+  pricesFilter = [[0, 500], [500, 1000], [1000, 2000], [2000, 3000], [3000, 5000]]
 
   // filterArr = ["status", "price", "servicename", "Nofilter"]
 
@@ -26,8 +30,7 @@ export class AvailableServicesComponent implements OnInit {
 
   // statusArr = ["Nofilter"]
 
-  // selectedStatus = "Nofilter"
-  // selectedFilter = "Nofilter"
+
   clickedService
   constructor(private providerService: ProviderService,
     private router: Router,
@@ -40,6 +43,7 @@ export class AvailableServicesComponent implements OnInit {
     this.userService.getServicesByCategory(this.serviceId)
       .subscribe(data => {
         this.bookings = data
+        this.allbookings = data
       }, err => {
         console.log(err)
       })
@@ -63,14 +67,13 @@ export class AvailableServicesComponent implements OnInit {
 
   }
 
-  // filterBookings(selectedStatus) {
-  //   this.selectedStatus = selectedStatus
-  //   if (selectedStatus == "Nofilter") {
-  //     this.bookings = this.allbookings
-  //   } else {
-  //     this.bookings = this.allbookings.filter(x => { return this.selectedStatus == x[this.selectedFilter] })
-  //   }
-  // }
+  filterBookings(selectedStatus) {
+    if (selectedStatus == "Nofilter") {
+      this.bookings = this.allbookings
+    } else {
+      this.bookings = this.allbookings.filter(x => { return selectedStatus[0] <= x.price && x.price <= selectedStatus[1] })
+    }
+  }
 
   // selectFilter(filter) {
   //   this.selectedStatus = "Nofilter"

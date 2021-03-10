@@ -42,11 +42,11 @@ export class LoginComponent implements OnInit {
           localStorage.setItem("userId", data['userId'])
           localStorage.setItem("userType", data['userType'])
           localStorage.setItem('user', JSON.stringify(data))
+          console.log(data)
           if (data['userType'] == "customer") {
             this.router.navigateByUrl('/userHomePage')
           } else {
             this.router.navigateByUrl('/providerHomePage')
-
           }
         }, err => {
           this.form.setErrors({

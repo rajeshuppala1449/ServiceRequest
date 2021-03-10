@@ -33,10 +33,10 @@ export class UserService {
 
   submitRating(bookingId, rating, desc) {
 
-    let postBody = { bookingId: bookingId, ratingDescription: desc, ratingPoints: rating }
+    let postBody = { bookingId: bookingId, ratingDescription: desc, ratingPoints: rating * 2 }
     console.log(postBody)
 
-    //return this.http.post('/customer/rateService', postBody)
+    return this.http.post('/customer/rateService', postBody)
 
   }
 }

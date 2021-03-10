@@ -26,6 +26,7 @@ import { ViewServiceComponent } from './view-service/view-service.component';
 import { AvailableServicesComponent } from './available-services/available-services.component';
 import { ProfileComponent } from './profile/profile.component';
 import { CustomerBookingsComponent } from './customer-bookings/customer-bookings.component';
+import { DashboardComponent } from './dashboard/dashboard.component';
 
 
 
@@ -45,6 +46,7 @@ import { CustomerBookingsComponent } from './customer-bookings/customer-bookings
     AvailableServicesComponent,
     ProfileComponent,
     CustomerBookingsComponent,
+    DashboardComponent,
 
   ],
   imports: [

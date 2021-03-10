@@ -44,6 +44,11 @@
         <div *ngIf="checkStatus(statusArr.COMPLETED,false)" style="margin: 30px;">
             <p style="font-size: 20px;font-weight:bold;margin-left: 30%;">This work is completed</p>
         </div>
+        <div *ngIf="checkStatus(statusArr.COMPLETED,provider) && booking.ratingDescription" style="margin: 30px;">
+            <h5>Feedback</h5>
+            <p>Rating: {{booking.ratingPoints}}</p>
+            <p>{{booking.ratingDescription}}</p>
+        </div>
         <div *ngIf="checkStatus(statusArr.COMPLETED,'customer')" style="margin: 30px;">
             <div class="col-sm-2 btn  align-self-center text-center" style="margin-left: 30px;">
                 <div class="starrating risingstar d-flex justify-content-center flex-row-reverse">

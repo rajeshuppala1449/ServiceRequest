@@ -18,6 +18,9 @@
 
                 <a *ngIf="isProvider()" class="nav-link" routerLink="viewServices">My Services</a>
             </li>
+            <li class="nav-item" id="5" *ngIf="isProvider()" (click)="buttonClick($event)">
+                <a class="nav-link" routerLink="profile">Dashboard</a>
+            </li>
             <li class="nav-item" id="3" (click)="buttonClick($event)">
                 <a class="nav-link" routerLink="profile">Profile</a>
             </li>

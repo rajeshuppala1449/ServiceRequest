@@ -21,37 +21,37 @@ export class UserHomePageComponent implements OnInit {
 
   displayServices = [
     {
-      serviceId: '15',
+      serviceId: '9',
       serviceName: 'Salon Service',
       image: 'assets/images/s5.png',
 
     },
     {
-      serviceId: '16',
-      serviceName: 'Ac Repair',
+      serviceId: '10',
+      serviceName: 'AC Repair',
       image: 'assets/images/s7.png',
 
     },
     {
-      serviceId: '17',
+      serviceId: '6',
       serviceName: 'Pest Control',
       image: 'assets/images/s2.png',
 
     },
     {
-      serviceId: '14',
+      serviceId: '11',
       serviceName: 'Appliance Repair',
       image: 'assets/images/s10.png',
 
     },
     {
-      serviceId: '7',
+      serviceId: '8',
       serviceName: 'Painter',
       image: 'assets/images/s3.png',
 
     },
     {
-      serviceId: '5',
+      serviceId: '12',
       serviceName: 'Carpenter',
       image: 'assets/images/s12.png',
 
