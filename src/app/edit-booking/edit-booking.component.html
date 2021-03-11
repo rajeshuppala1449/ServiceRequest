@@ -22,9 +22,7 @@
                 <p style="font-size: 25px;font-weight:bold" class="card-text"><i
                         class="fas fa-rupee-sign"></i><label>&nbsp;{{booking.bookingCost}}</label>
                 </p>
-                <!-- <p class="card-text"><i class="fas fa-location-arrow"></i>&nbsp;&nbsp;{{booking.location}}</p> -->
 
-                <!-- <p class="card-text">With supporting text below as a natural lead-in to additional content.</p> -->
 
             </div>
             <div *ngIf="checkStatus(statusArr.PROCESSING,'provider')" style="margin: 30px;">
@@ -45,7 +43,11 @@
                 <p style="font-size: 20px;font-weight:bold;margin-left: 30%;">This order has been cancelled</p>
             </div>
             <div *ngIf="checkStatus(statusArr.COMPLETED,false)" style="margin: 30px;">
-                <p style="font-size: 20px;font-weight:bold;margin-left: 30%;">This work is completed</p>
+
+                <div>
+                    <p style="font-size: 20px;font-weight:bold;margin-left: 35%;">This order is finished</p>
+                </div>
+
             </div>
             <div *ngIf="checkStatus(statusArr.COMPLETED,provider) && booking.ratingDescription" style="margin: 30px;">
                 <h5>Feedback</h5>

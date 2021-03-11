@@ -12,10 +12,7 @@ export class LoginComponent implements OnInit {
 
 
   ngOnInit() {
-    // localStorage.removeItem('login')
-    // if (this.authService.isLoggedIn) {
-    //   this.router.navigateByUrl('userHomePage')
-    // }
+
   }
 
   constructor(private router: Router, private authService: AuthService) { }

@@ -7,6 +7,7 @@ import { Router } from '@angular/router'
   templateUrl: './provider-home-page.component.html',
   styleUrls: ['./provider-home-page.component.css']
 })
+
 export class ProviderHomePageComponent implements OnInit {
   arr = [0, 1, 2, 3, 4]
   statusArr = ['Apply Filter', 'Processing', 'Cancelled', 'Accepted', 'Completed']

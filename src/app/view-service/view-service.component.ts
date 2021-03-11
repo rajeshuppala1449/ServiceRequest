@@ -11,7 +11,7 @@ import { Route } from '@angular/compiler/src/core';
 })
 export class ViewServiceComponent implements OnInit {
 
-  // customerId = 1
+
   currentService
   myServices
   constructor(private providerService: ProviderService, private router: Router) { }
@@ -46,7 +46,7 @@ export class ViewServiceComponent implements OnInit {
       }, err => {
         console.log(err)
       })
-    ///need to rerender this page
+
   }
 
   addService() {

@@ -9,10 +9,10 @@ import * as $ from 'jquery';
 //var CanvasJS = require('./canvasjs.min');
 // import { DatePipe } from '@angular/common';
 
-// import CanvasJS from 'canvasjs';
+//import CanvasJS from 'canvasjs';
+//import html2pdf from './html2pdf';
 import * as CanvasJS from './canvasjs.min';
 // import html2canvas from 'html2canvas';
-
 // import { jsPDF } from "jspdf";
 
 import { DETAILS } from '../dashboard/details';
@@ -109,6 +109,19 @@ export class DashboardComponent implements OnInit {
     chart1.render();
 
   }
+
+
+  // downloadPDF() {
+
+  //   var element = document.getElementById('element-to-print');
+  //   html2pdf(element, {
+  //     margin: 1,
+  //     filename: 'myfile.pdf',
+  //     image: { type: 'jpeg', quality: 0.98 },
+  //     html2canvas: { scale: 1, logging: true, dpi: 250, letterRendering: true },
+  //     jsPDF: { unit: 'mm', format: 'a3', orientation: 'landscape' }
+  //   });
+  // }
 
 
   // DownloadPdf(){

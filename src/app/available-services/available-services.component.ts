@@ -20,15 +20,6 @@ export class AvailableServicesComponent implements OnInit {
 
   pricesFilter = [[0, 500], [500, 1000], [1000, 2000], [2000, 3000], [3000, 5000]]
 
-  // filterArr = ["status", "price", "servicename", "Nofilter"]
-
-  // filters = {
-  //   status: ["booked", "accepted", "finished", "cancelled", "rejected", "Nofilter"],
-  //   servicename: ["House Cleaning", "Car Wash", "Painting", "Carpentery Work", "Nofilter"],
-  //   Nofilter: ["Nofilter"]
-  // }
-
-  // statusArr = ["Nofilter"]
 
 
   clickedService
